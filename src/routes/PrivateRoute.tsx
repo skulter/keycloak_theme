@@ -14,18 +14,7 @@ function PrivateRoute({ children, exact = false, ...rest }: PrivateRouteProps) {
   if (!initialized) return (<div> loading... </div>);
 
   return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        keycloak?.authenticated ? (
-          <>
-            {children}
-          </>
-        ) : (
-          keycloak.login({ redirectUri: window.location.href, })
-        )
-      }
-    />
+    null
   );
 }
 

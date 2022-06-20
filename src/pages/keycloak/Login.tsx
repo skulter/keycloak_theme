@@ -1,20 +1,19 @@
 import React, { useState, useRef, memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import { Box, Button, Grid, TextField } from '@mui/material';
+import { Box, Button, FormControl, Grid, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField, Typography } from '@mui/material';
 import type { KcProps } from 'keycloakify/lib/components/KcProps';
 import type { KcContextType } from '@/utils/keycloakManager';
-
-import bg from '@/assets/images/login-bg.jpg';
+import facebook from '@/assets/images/facebook.png';
+import google from '@/assets/images/google.png';
+import github from '@/assets/images/github.png';
+import microsoft from '@/assets/images/microsoft.png';
 
 type KcContext_Login = Extract<KcContextType, { pageId: 'login.ftl' }>;
 
 const StyledLogin = styled(Grid)`
   min-width: 100vw;
   min-height: 100vh;
-  /* background-image: url(${bg});
-  background-size: cover;
-  background-repeat: no-repeat; */
   background-color: rgb(222, 230, 240);
   display: flex;
   flex-direction: column;
@@ -23,16 +22,21 @@ const StyledLogin = styled(Grid)`
 `;
 
 const LoginFormContainer = styled(Grid)`
-    box-shadow: 0 0 6px 2px grey;
-    border-radius: 5px;
+    box-shadow: 1px 1px 2px 1.5px gray;
+    /* border-radius: 5px; */
+    /* border : 2px solid grey; */
     background-color: white;
     justify-content: center;
-    width: 25rem;
+    width: 30rem;
+    /* height:35rem; */
+    display: flex;
+    flex-direction: column !important;
+    align-items: center;
 `
 
 const LoginForm = styled.form`
   width: 25rem;
-  height: 20rem;
+  margin: 2rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,20 +45,32 @@ const LoginForm = styled.form`
 
 const LoginInput = styled(TextField)`
   width: 20rem;
-  margin-bottom: 8px !important;
+  /* padding:2rem !important; */
+  margin-bottom: 1rem !important;
 `;
 
 const LoginButton = styled(Button)`
   background-color: rgb(28, 47, 68)  !important;
-  height:2rem;
+  height:2.5rem;
   width: 100%;
 `;
 
-const SocialForm = styled('form')`
-border: 1px solid;
+const SocialForm = styled('a')`
+/* border: 1px solid grey; */
+border-radius: 30%;
 background-color: white;
-  width: 20rem;
+height:4rem;
 `
+
+const returnImg = (data: string): string => {
+  switch (data) {
+    case "google": return google
+    case "facebook": return facebook
+    case "github": return github
+    case "microsoft": return microsoft
+    default: return google
+  }
+}
 
 export const Login = memo(
   ({ kcContext, ...props }: { kcContext: KcContext_Login } & KcProps) => {
@@ -95,43 +111,72 @@ export const Login = memo(
     return (
       <StyledLogin container>
         <LoginFormContainer item>
+          <Grid display='flex' sx={{
+            marginTop: '3rem',
+            justifyContent: 'center'
+          }} >
+            <Typography variant='h4' >Login</Typography>
+          </Grid>
           <LoginForm ref={form} method="post" action={url.loginAction}>
-            {/* <Box sx={{ width: '60px' }}>
-            {test.providers?.map(provider => (
-              <SocialForm method="post" action={provider.loginUrl}>
-                <Button type='submit'> <i className={provider.iconClasses} aria-hidden="true"></i>{provider.displayName} 로그인</Button>
-              </SocialForm>
-            ))}
-          </Box> */}
-            <Grid item direction='column' sx={{ alignItems: 'center' }}>
+
+            <Grid item sx={{ alignItems: 'center', flexDirection: 'column' }}>
               <Grid item>
-                <LoginInput
-                  id="username"
-                  name="username"
-                  size="small"
-                  label='Email'
-                />
+                <FormControl sx={{ marginBottom: 2, width: "100%" }} variant="outlined">
+                  <InputLabel >
+                    username
+                  </InputLabel>
+                  <OutlinedInput
+                    id="username"
+                    name="username"
+                    size="medium"
+                    label='username'
+                  />
+                </FormControl>
+                <FormControl sx={{ marginBottom: 2, width: "100%" }} variant="outlined">
+                  <InputLabel>
+                    Password
+                  </InputLabel>
+                  <OutlinedInput
+                    id="password"
+                    name="password"
+                    type="password"
+                    size="medium"
+                    label='password'
+                    endAdornment={
+                      <InputAdornment position="end">
+                        {/* <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton> */}
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl>
               </Grid>
-              <Grid item>
-                <LoginInput
-                  id="password"
-                  name="password"
-                  type="password"
-                  size="small"
-                  label='password'
-                />
-              </Grid>
-              <LoginButton variant="contained" onClick={() => handleSubmit()}>Sign in</LoginButton>
+              <LoginButton variant="contained" onClick={() => handleSubmit()}>Login</LoginButton>
             </Grid>
           </LoginForm>
-          <Grid container sx={{ height: '10rem' }}>
-            <Grid container>
-              <Grid item xs={4} sx={{ borderTop: '1px solid', height: '1px' }} />
-              <Grid item xs={4}>or</Grid>
-              <Grid item xs={4} />
+          <Grid container direction='column' alignItems='center'>
+            <Grid item>
+              <Typography>or</Typography>
             </Grid>
-            <Grid item xs={12} sx={{ height: '100%' }}>
-              <Grid></Grid>
+            <Grid container alignContent='center'>
+              {/* <Grid item xs={3}>asd</Grid>
+              <Grid item xs={3}>asd</Grid>
+              <Grid item xs={3}>asd</Grid>
+              <Grid item xs={3}>asd</Grid> */}
+              <Box>
+                {test.providers?.map(provider => (
+                  <SocialForm key={provider.displayName} href={provider.loginUrl}>
+                    {/* {returnImg(provider.providerId)} */}
+                    <img width={30} src={returnImg(provider.providerId)} alt=""></img>
+                  </SocialForm>
+                ))}
+              </Box>
             </Grid>
           </Grid>
         </LoginFormContainer>
