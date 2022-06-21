@@ -4,6 +4,7 @@ export const ROUTES = {
   MAIN: '/main',
   MY: '/my',
   SERVICES: '/services',
+  INFOGATHERING:'/infoGathering'
 };
 
 export default ROUTES;

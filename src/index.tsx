@@ -9,6 +9,7 @@ import App from './App';
 // keycloak ui
 import KeycloakApp from '@/KeycloakApp';
 import { kcContext } from '@/utils/keycloakManager';
+import { BrowserRouter } from 'react-router-dom';
 
 
 /**
@@ -16,13 +17,15 @@ import { kcContext } from '@/utils/keycloakManager';
  */
 ReactDOM.render(
   <React.StrictMode>
-		{
-      kcContext !== undefined ? (
-				<KeycloakApp kcContext={kcContext} />
-			) : (
-				<App />
-			)
-    }
+    <BrowserRouter>
+      {
+        kcContext !== undefined ? (
+          <KeycloakApp kcContext={kcContext} />
+        ) : (
+          <App />
+        )
+      }
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root'),
 );

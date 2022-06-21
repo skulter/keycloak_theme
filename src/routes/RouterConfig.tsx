@@ -11,6 +11,7 @@ import Error404 from '@/pages/common/Error404';
 
 // url constants
 import { ROUTES } from '@/constants/routes';
+import InfoGathering from '@/pages/policy/InfoGathering';
 
 export const RouterConfig = () => {
   return (
@@ -24,6 +25,7 @@ export const RouterConfig = () => {
             <Route exact path={ROUTES.ROOT} component={Main} />
             <Route path={ROUTES.MAIN} component={Main} />
             <Route path={ROUTES.SERVICES} component={Services} />
+            <Route path={ROUTES.INFOGATHERING} component={InfoGathering} />
 
             {/* with Auth */}
             <PrivateRoute exact path={ROUTES.MY}>
