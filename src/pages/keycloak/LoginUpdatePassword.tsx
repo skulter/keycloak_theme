@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 import Snackbar from '@mui/material/Snackbar';
 
 
-type KcContext_Login = Extract<KcContextType, { pageId: 'login.ftl' }>;
+type KcContext_Login = Extract<KcContextType, { pageId: 'login-update-password.ftl' }>;
 
 const StyledLogin = styled(Grid)`
   min-width: 100vw;
@@ -84,10 +84,10 @@ export const Login = memo(
     const form = useRef<HTMLFormElement>(null);
     const [open, setOpen] = React.useState(false);
     const { t } = useTranslation();
-    const { social, url, message, realm, } = kcContext;
+    const { url, message, realm, } = kcContext;
     const isSessionOut = message?.summary.includes('attempt timed out') || message?.summary.includes('Timeout');
     console.log(kcContext);
-    console.warn('message =>', message);
+    console.warn('message =>', message); 
 
     const handleClose = () => {
       setOpen(false);
@@ -166,7 +166,7 @@ export const Login = memo(
             marginTop: '3rem',
             justifyContent: 'center'
           }} >
-            <Typography variant='h5' >Password Update</Typography>
+            <Typography variant='h5' >User Login</Typography>
           </Grid>
           <LoginForm ref={form} method="post" action={url.loginAction}>
 
@@ -174,47 +174,30 @@ export const Login = memo(
               <Grid item>
                 <FormControl sx={{ marginBottom: 2, width: "100%" }} variant="outlined">
                   <InputLabel >
-                    Email ID
+                    New Password
                   </InputLabel>
                   <OutlinedInput
-                    id="username"
-                    name="username"
+                    type="password"
+                    id="password-new"
+                    name="password-new"
                     size="medium"
-                    label='Email ID'
+                    label='New Password'
                   />
                 </FormControl>
                 <FormControl sx={{ marginBottom: 2, width: "100%" }} variant="outlined">
                   <InputLabel>
-                    Password
+                    Confirm password
                   </InputLabel>
                   <OutlinedInput
-                    id="password"
-                    name="password"
+                    id="password-confirm"
+                    name="password-confirm"
                     type="password"
                     size="medium"
-                    label='Password'
+                    label='Confirm password'
                   />
                 </FormControl>
               </Grid>
               <LoginButton variant="contained" onClick={() => handleSubmit()}>Login</LoginButton>
-            </Grid>
-            <Grid container direction='column' alignItems='center' marginTop='2rem'>
-              <Grid item marginBottom='2rem'>
-                <Typography>or</Typography>
-              </Grid>
-              <Grid container alignContent='center' justifyContent='space-between'>
-                {test.displayInfo && test.providers?.map(provider => (
-                  // <Grid item xs={3} key={provider.displayName}>
-                  // <a id="social-github" class=" " type="button" href="/realms/test-realm/broker/github/login?client_id=React-auth&amp;tab_id=2KxsOO5nVHo&amp;session_code=UiLauk9tgvdg1pBJTema8RJj_xg0mNluMvhug-fd20c">
-                  //               <span class="">GitHub</span>
-                  //       </a>
-                  <a id={`social-${provider.displayName}`} type="button" href={provider.loginUrl} key={provider.displayName}>
-                    {/* {returnImg(provider.providerId)} */}
-                    <img width={40} src={returnImg(provider.providerId)} alt={provider.providerId}></img>
-                  </a>
-                  // </Grid>
-                ))}
-              </Grid>
             </Grid>
           </LoginForm>
         </LoginFormContainer>
