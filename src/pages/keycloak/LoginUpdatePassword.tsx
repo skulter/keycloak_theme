@@ -3,15 +3,9 @@ import styled from 'styled-components';
 import { Box, Button, FormControl, Grid, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField, Typography } from '@mui/material';
 import type { KcProps } from 'keycloakify/lib/components/KcProps';
 import type { KcContextType } from '@/utils/keycloakManager';
-import facebook from '@/assets/images/facebook.png';
-import google from '@/assets/images/google.png';
-import github from '@/assets/images/github.png';
-import microsoft from '@/assets/images/microsoft.png';
-import { useTranslation } from 'react-i18next';
-import Snackbar from '@mui/material/Snackbar';
 
 
-type KcContext_Login = Extract<KcContextType, { pageId: 'login-update-password.ftl' }>;
+type KcContext_LoginUpdatePassword = Extract<KcContextType, { pageId: 'login-update-password.ftl' }>;
 
 const StyledLogin = styled(Grid)`
   min-width: 100vw;
@@ -65,34 +59,18 @@ const Footer = styled.footer`
   align-items: center !important;
 `
 
-const returnImg = (data: string): string => {
-  switch (data) {
-    case "google": return google
-    case "facebook": return facebook
-    case "github": return github
-    case "saml": return microsoft
-    default: return google
-  }
-}
-
-
 const year = new Date();
 
 
 export const Login = memo(
-  ({ kcContext, ...props }: { kcContext: KcContext_Login } & KcProps) => {
+  ({ kcContext, ...props }: { kcContext: KcContext_LoginUpdatePassword } & KcProps) => {
     const form = useRef<HTMLFormElement>(null);
-    const [open, setOpen] = React.useState(false);
-    const { t } = useTranslation();
     const { url, message, realm, } = kcContext;
     const isSessionOut = message?.summary.includes('attempt timed out') || message?.summary.includes('Timeout');
     console.log(kcContext);
     console.warn('message =>', message); 
 
-    const handleClose = () => {
-      setOpen(false);
-    };
-
+  
     const handleSubmit = () => {
       console.log(form);
       form?.current?.submit();
@@ -132,30 +110,29 @@ export const Login = memo(
       ]
     }
 
-    useEffect(() => {
-      setOpen(true);
+    // useEffect(() => {
+    //   setOpen(true);
 
-      if (message?.type === 'error') {
-        console.log(message.summary)
-      }
-      if (message?.summary === 'emailSentMessage') {
-        <Snackbar
-          open={open}
-          onClose={handleClose}
-          message={t('success.send.reset.password.email.default')}
-        />
-      }
-      //   toast.success(<Toast title={t('success.send.reset.password.email')} message={t('success.send.reset.password.email.default')} />);
-      // } else if (message?.summary === 'expiredActionTokenSessionExistsMessage') {
-      //   toast.error(<Toast title={t('error.session.expired')} message={t('error.session.expired.default')} />);
-      // } else if (message?.summary === 'accountUpdatedMessage') {
-      //   toast.success(<Toast title={t('success.account.update')} message={t('success.account.update.message')} />);
-      // }
-    }, []);
+    //   if (message?.type === 'error') {
+    //     console.log(message.summary)
+    //   }
+    //   if (message?.summary === 'emailSentMessage') {
+    //     <Snackbar
+    //       open={open}
+    //       onClose={handleClose}
+    //       message={t('success.send.reset.password.email.default')}
+    //     />
+    //   }
+    //   //   toast.success(<Toast title={t('success.send.reset.password.email')} message={t('success.send.reset.password.email.default')} />);
+    //   // } else if (message?.summary === 'expiredActionTokenSessionExistsMessage') {
+    //   //   toast.error(<Toast title={t('error.session.expired')} message={t('error.session.expired.default')} />);
+    //   // } else if (message?.summary === 'accountUpdatedMessage') {
+    //   //   toast.success(<Toast title={t('success.account.update')} message={t('success.account.update.message')} />);
+    //   // }
+    // }, []);
 
     return (
       <StyledLogin container>
-
         <LoginFormContainer item>
           {message?.type === 'error' &&
             <Box sx={{ width: '100%', color: '#ef2771', border: '1px solid #a0a0a0d8', padding: '.5rem', textAlign: 'center' }}>

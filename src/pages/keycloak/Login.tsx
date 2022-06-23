@@ -7,8 +7,6 @@ import facebook from '@/assets/images/facebook.png';
 import google from '@/assets/images/google.png';
 import github from '@/assets/images/github.png';
 import microsoft from '@/assets/images/microsoft.png';
-import { useTranslation } from 'react-i18next';
-import Snackbar from '@mui/material/Snackbar';
 
 
 type KcContext_Login = Extract<KcContextType, { pageId: 'login.ftl' }>;
@@ -82,19 +80,12 @@ const year = new Date();
 export const Login = memo(
   ({ kcContext, ...props }: { kcContext: KcContext_Login } & KcProps) => {
     const form = useRef<HTMLFormElement>(null);
-    const [open, setOpen] = React.useState(false);
-    const { t } = useTranslation();
     const { social, url, message, realm, } = kcContext;
     const isSessionOut = message?.summary.includes('attempt timed out') || message?.summary.includes('Timeout');
     console.log(kcContext);
     console.warn('message =>', message);
 
-    const handleClose = () => {
-      setOpen(false);
-    };
-
     const handleSubmit = () => {
-      console.log(form);
       form?.current?.submit();
     };
 
@@ -132,30 +123,29 @@ export const Login = memo(
       ]
     }
 
-    useEffect(() => {
-      setOpen(true);
+    // useEffect(() => {
+    //   setOpen(true);
 
-      if (message?.type === 'error') {
-        console.log(message.summary)
-      }
-      if (message?.summary === 'emailSentMessage') {
-        <Snackbar
-          open={open}
-          onClose={handleClose}
-          message={t('success.send.reset.password.email.default')}
-        />
-      }
-      //   toast.success(<Toast title={t('success.send.reset.password.email')} message={t('success.send.reset.password.email.default')} />);
-      // } else if (message?.summary === 'expiredActionTokenSessionExistsMessage') {
-      //   toast.error(<Toast title={t('error.session.expired')} message={t('error.session.expired.default')} />);
-      // } else if (message?.summary === 'accountUpdatedMessage') {
-      //   toast.success(<Toast title={t('success.account.update')} message={t('success.account.update.message')} />);
-      // }
-    }, []);
+    //   if (message?.type === 'error') {
+    //     console.log(message.summary)
+    //   }
+    //   if (message?.summary === 'emailSentMessage') {
+    //     <Snackbar
+    //       open={open}
+    //       onClose={handleClose}
+    //       message={t('success.send.reset.password.email.default')}
+    //     />
+    //   }
+    //   //   toast.success(<Toast title={t('success.send.reset.password.email')} message={t('success.send.reset.password.email.default')} />);
+    //   // } else if (message?.summary === 'expiredActionTokenSessionExistsMessage') {
+    //   //   toast.error(<Toast title={t('error.session.expired')} message={t('error.session.expired.default')} />);
+    //   // } else if (message?.summary === 'accountUpdatedMessage') {
+    //   //   toast.success(<Toast title={t('success.account.update')} message={t('success.account.update.message')} />);
+    //   // }
+    // }, []);
 
     return (
       <StyledLogin container>
-
         <LoginFormContainer item>
           {message?.type === 'error' &&
             <Box sx={{ width: '100%', color: '#ef2771', border: '1px solid #a0a0a0d8', padding: '.5rem', textAlign: 'center' }}>

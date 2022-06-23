@@ -15,7 +15,7 @@ export const keycloak = Keycloak({
 });
 
 export const { kcContext } = getKcContext<{
-  pageId: 'login.ftl',
+  pageId: 'login-update-password.ftl',
   /**
    * Defined when you use the keycloak-mail-whitelisting keycloak plugin
    * (https://github.com/micedre/keycloak-mail-whitelisting)
@@ -27,8 +27,8 @@ export const { kcContext } = getKcContext<{
   // "mockPageId": "login.ftl",
   // "mockPageId": "register.ftl",
   // "mockPageId": "login-update-profile.ftl",
-  // // @ts-ignore
-  // "mockPageId": "login-update-password.ftl",
+  // @ts-ignore
+  "mockPageId": "login-update-password.ftl",
   // "mockPageId": "info.ftl",
   // "mockPageId": "error.ftl",
 
@@ -38,7 +38,7 @@ export const { kcContext } = getKcContext<{
    */
   mockData: [
     {
-      pageId: 'login.ftl',
+      pageId: 'login-update-password.ftl',
       url: {
         loginAction: "http://localhost:8080/auth/realms/sample/login-actions/authenticate?session_code=mX4lrdtfEFVFmv1b6SJVUF_TIgWYtkmLPQ8v6jEbyOw&execution=b6a52a8b-2d12-4e71-a3b6-6e6ff4c158ab&client_id=public-client&tab_id=uTelJ8v_g5Y",
       },
