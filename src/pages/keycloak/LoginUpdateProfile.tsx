@@ -65,7 +65,7 @@ const year = new Date();
 export const LoginUpdateProfile = memo(
   ({ kcContext, ...props }: { kcContext: KcContext_LoginUpdateProfile } & KcProps) => {
     const form = useRef<HTMLFormElement>(null);
-    const { url, message, realm, } = kcContext;
+    const { url, message, realm, user} = kcContext;
     const isSessionOut = message?.summary.includes('attempt timed out') || message?.summary.includes('Timeout');
     console.log(kcContext);
     console.warn('message =>', message);
@@ -105,6 +105,8 @@ export const LoginUpdateProfile = memo(
                     name="username"
                     size="medium"
                     label='Username'
+                    value={user.username}
+                    readOnly
                   />
                 </FormControl>
                 <FormControl sx={{ marginBottom: 2, width: "100%" }} variant="outlined">
@@ -117,6 +119,8 @@ export const LoginUpdateProfile = memo(
                     name="email"
                     size="medium"
                     label='Email'
+                    value={user.email}
+                    readOnly
                   />
                 </FormControl>
                 <FormControl sx={{ marginBottom: 2, width: "100%" }} variant="outlined">

@@ -9,7 +9,6 @@ import LoginUpdatePassword from '@/pages/keycloak/LoginUpdatePassword';
 // import Info from '@/pages/keycloak/Info';
 import Error404 from '@/pages/common/Error404';
 // import Error500 from '@/pages/common/Error500';
-
 import './KeycloakApp.scss';
 import LoginUpdateProfile from './pages/keycloak/LoginUpdateProfile';
 
