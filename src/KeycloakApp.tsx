@@ -11,6 +11,7 @@ import Error404 from '@/pages/common/Error404';
 // import Error500 from '@/pages/common/Error500';
 
 import './KeycloakApp.scss';
+import LoginUpdateProfile from './pages/keycloak/LoginUpdateProfile';
 
 export const KeycloakApp = memo(({ kcContext }: { kcContext: KcContextType; }) => {
   const { t } = useTranslation();
@@ -19,11 +20,13 @@ export const KeycloakApp = memo(({ kcContext }: { kcContext: KcContextType; }) =
 
   switch (kcContext.pageId) {
     case 'login.ftl':
-      return  <Login {...{ kcContext, ...defaultKcProps }} />;
+      return <Login {...{ kcContext, ...defaultKcProps }} />;
 
     case 'login-update-password.ftl':
       return <LoginUpdatePassword {...{ kcContext, ...defaultKcProps }} />;
 
+    case 'login-update-profile.ftl':
+      return <LoginUpdateProfile {...{ kcContext, ...defaultKcProps }} />;
     // // @ts-ignore
     // case 'login-update-password.ftl':
     //   return <ResetPassword {...{ kcContext, ...defaultKcProps }} />;

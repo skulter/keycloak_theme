@@ -22,3 +22,4 @@ build_keycloak/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+src/pages/keycloak/Login.tsx

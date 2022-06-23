@@ -62,7 +62,7 @@ const Footer = styled.footer`
 const year = new Date();
 
 
-export const Login = memo(
+export const LoginUpdatePassword = memo(
   ({ kcContext, ...props }: { kcContext: KcContext_LoginUpdatePassword } & KcProps) => {
     const form = useRef<HTMLFormElement>(null);
     const { url, message, realm, } = kcContext;
@@ -133,4 +133,4 @@ export const Login = memo(
   },
 );
 
-export default Login;
+export default LoginUpdatePassword;
