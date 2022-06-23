@@ -51,7 +51,7 @@ const StyledError = styled.div`
 
 function Errors({ code, guide }: { code: string, guide?: string, }) {
   const { t } = useTranslation();
-
+	
   const handleClickReturn = () => {
     window.history.back();
   };
