@@ -15,7 +15,7 @@ export const keycloak = Keycloak({
 });
 
 export const { kcContext } = getKcContext<{
-  pageId: 'login-update-password.ftl',
+  pageId: 'login-update-profile',
   /**
    * Defined when you use the keycloak-mail-whitelisting keycloak plugin
    * (https://github.com/micedre/keycloak-mail-whitelisting)
@@ -26,9 +26,9 @@ export const { kcContext } = getKcContext<{
   // 아래의 디버깅을 원하는 페이지 주석을 해제하면 하단의 mockData를 적용하여 로컬에 페이지를 띄울 수 있습니다.
   // "mockPageId": "login.ftl",
   // "mockPageId": "register.ftl",
-  // "mockPageId": "login-update-profile.ftl",
+  "mockPageId": "login-update-profile.ftl",
   // @ts-ignore
-  "mockPageId": "login-update-password.ftl",
+  // "mockPageId": "login-update-password.ftl",
   // "mockPageId": "info.ftl",
   // "mockPageId": "error.ftl",
 
@@ -38,7 +38,7 @@ export const { kcContext } = getKcContext<{
    */
   mockData: [
     {
-      pageId: 'login-update-password.ftl',
+      pageId: 'login-update-profile',
       url: {
         loginAction: "http://localhost:8080/auth/realms/sample/login-actions/authenticate?session_code=mX4lrdtfEFVFmv1b6SJVUF_TIgWYtkmLPQ8v6jEbyOw&execution=b6a52a8b-2d12-4e71-a3b6-6e6ff4c158ab&client_id=public-client&tab_id=uTelJ8v_g5Y",
       },

@@ -193,7 +193,7 @@ export const Login = memo(
                 <Typography>or</Typography>
               </Grid>
               <Grid container alignContent='center' justifyContent='space-between'>
-                {test.displayInfo && test.providers?.map(provider => (
+                {social.displayInfo && social.providers?.map(provider => (
                   // <Grid item xs={3} key={provider.displayName}>
                   // <a id="social-github" class=" " type="button" href="/realms/test-realm/broker/github/login?client_id=React-auth&amp;tab_id=2KxsOO5nVHo&amp;session_code=UiLauk9tgvdg1pBJTema8RJj_xg0mNluMvhug-fd20c">
                   //               <span class="">GitHub</span>

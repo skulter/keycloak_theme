@@ -5,7 +5,7 @@ import type { KcProps } from 'keycloakify/lib/components/KcProps';
 import type { KcContextType } from '@/utils/keycloakManager';
 
 
-type KcContext_LoginUpdatePassword = Extract<KcContextType, { pageId: 'login-update-password.ftl' }>;
+type KcContext_LoginUpdateProfile = Extract<KcContextType, { pageId: 'login-update-profile.ftl' }>;
 
 const StyledLogin = styled(Grid)`
   min-width: 100vw;
@@ -63,18 +63,19 @@ const year = new Date();
 
 
 export const Login = memo(
-  ({ kcContext, ...props }: { kcContext: KcContext_LoginUpdatePassword } & KcProps) => {
+  ({ kcContext, ...props }: { kcContext: KcContext_LoginUpdateProfile } & KcProps) => {
     const form = useRef<HTMLFormElement>(null);
     const { url, message, realm, } = kcContext;
     const isSessionOut = message?.summary.includes('attempt timed out') || message?.summary.includes('Timeout');
     console.log(kcContext);
-    console.warn('message =>', message); 
+    console.warn('message =>', message);
 
-  
+
     const handleSubmit = () => {
       console.log(form);
       form?.current?.submit();
     };
+
 
     return (
       <StyledLogin container>
@@ -96,26 +97,50 @@ export const Login = memo(
               <Grid item>
                 <FormControl sx={{ marginBottom: 2, width: "100%" }} variant="outlined">
                   <InputLabel >
-                    New Password
+                    Username
                   </InputLabel>
                   <OutlinedInput
-                    type="password"
-                    id="password-new"
-                    name="password-new"
+                    type="text"
+                    id="username"
+                    name="username"
                     size="medium"
-                    label='New Password'
+                    label='Username'
+                  />
+                </FormControl>
+                <FormControl sx={{ marginBottom: 2, width: "100%" }} variant="outlined">
+                  <InputLabel >
+                    Email
+                  </InputLabel>
+                  <OutlinedInput
+                    type="text"
+                    id="email"
+                    name="email"
+                    size="medium"
+                    label='Email'
+                  />
+                </FormControl>
+                <FormControl sx={{ marginBottom: 2, width: "100%" }} variant="outlined">
+                  <InputLabel >
+                    Firstname
+                  </InputLabel>
+                  <OutlinedInput
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    size="medium"
+                    label='Firstname'
                   />
                 </FormControl>
                 <FormControl sx={{ marginBottom: 2, width: "100%" }} variant="outlined">
                   <InputLabel>
-                    Confirm password
+                    Lastname
                   </InputLabel>
                   <OutlinedInput
-                    id="password-confirm"
-                    name="password-confirm"
-                    type="password"
+                    type="text"
+                    id="lastName"
+                    name="lastName"
                     size="medium"
-                    label='Confirm password'
+                    label='Lastname'
                   />
                 </FormControl>
               </Grid>
