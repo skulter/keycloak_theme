@@ -68,9 +68,9 @@ export const LoginUpdatePassword = memo(
     const { url, message, realm, } = kcContext;
     const isSessionOut = message?.summary.includes('attempt timed out') || message?.summary.includes('Timeout');
     console.log(kcContext);
-    console.warn('message =>', message); 
+    console.warn('message =>', message);
 
-  
+
     const handleSubmit = () => {
       console.log(form);
       form?.current?.submit();
@@ -88,7 +88,7 @@ export const LoginUpdatePassword = memo(
             marginTop: '3rem',
             justifyContent: 'center'
           }} >
-            <Typography variant='h5' >User Login</Typography>
+            <Typography variant='h5' >Password Update</Typography>
           </Grid>
           <LoginForm ref={form} method="post" action={url.loginAction}>
 
@@ -119,7 +119,7 @@ export const LoginUpdatePassword = memo(
                   />
                 </FormControl>
               </Grid>
-              <LoginButton variant="contained" onClick={() => handleSubmit()}>Login</LoginButton>
+              <LoginButton variant="contained" onClick={() => handleSubmit()}>Update</LoginButton>
             </Grid>
           </LoginForm>
         </LoginFormContainer>

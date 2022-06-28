@@ -89,7 +89,7 @@ export const LoginUpdateProfile = memo(
             marginTop: '3rem',
             justifyContent: 'center'
           }} >
-            <Typography variant='h5' >User Login</Typography>
+            <Typography variant='h5' >Profile Update</Typography>
           </Grid>
           <LoginForm ref={form} method="post" action={url.loginAction}>
 
@@ -148,7 +148,7 @@ export const LoginUpdateProfile = memo(
                   />
                 </FormControl>
               </Grid>
-              <LoginButton variant="contained" onClick={() => handleSubmit()}>Login</LoginButton>
+              <LoginButton variant="contained" onClick={() => handleSubmit()}>Update</LoginButton>
             </Grid>
           </LoginForm>
         </LoginFormContainer>
