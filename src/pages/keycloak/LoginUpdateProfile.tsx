@@ -55,15 +55,6 @@ const LoginButton = styled(Button)`
   width: 100%;
 `;
 
-const Footer = styled.footer`
-  position: absolute;
-  bottom: 1rem;
-  display: flex;
-  flex-direction: column !important;
-  align-items: center !important;
-`
-
-const year = new Date();
 
 
 export const LoginUpdateProfile = memo(
@@ -137,6 +128,7 @@ export const LoginUpdateProfile = memo(
                     name="firstName"
                     size="medium"
                     label='Firstname'
+                    value={user.firstName}
                   />
                 </FormControl>
                 <FormControl sx={{ marginBottom: 2, width: "100%" }} variant="outlined">
@@ -149,6 +141,7 @@ export const LoginUpdateProfile = memo(
                     name="lastName"
                     size="medium"
                     label='Lastname'
+                    value={user.lastName}
                   />
                 </FormControl>
               </Grid>
@@ -156,11 +149,6 @@ export const LoginUpdateProfile = memo(
             </Grid>
           </LoginForm>
         </LoginFormContainer>
-        <Footer >
-          <Grid item><Typography>{year.getFullYear()} CLOUDMATE Corp. All Rights Reserved.</Typography></Grid>
-          <Grid item><a href='https://who.cloudmt.co.kr/privacypolicy' target='_blank' rel='noreferrer'><Typography>Privacy Policy</Typography></a></Grid>
-          <Grid item><Typography>Cookie Policy</Typography></Grid>
-        </Footer>
       </StyledLogin >
     );
   },

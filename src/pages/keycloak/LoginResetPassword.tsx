@@ -8,10 +8,10 @@ import bg3 from '@/assets/images/bg_3.jpg'
 import bg4 from '@/assets/images/bg_4.jpg'
 import bg5 from '@/assets/images/bg_5.jpg'
 
-type KcContext_Register = Extract<KcContextType, { pageId: 'register.ftl' }>;
+type KcContext_LoginResetPassword = Extract<KcContextType, { pageId: 'login-reset-password.ftl' }>;
 
-export const Register = memo(
-    ({ kcContext, ...props }: { kcContext: KcContext_Register } & KcProps) => {
+export const LoginResetPassword = memo(
+    ({ kcContext, ...props }: { kcContext: KcContext_LoginResetPassword } & KcProps) => {
         const form = useRef<HTMLFormElement>(null);
         const { url, message, realm, } = kcContext;
         const isSessionOut = message?.summary.includes('attempt timed out') || message?.summary.includes('Timeout');
@@ -26,10 +26,10 @@ export const Register = memo(
 
         return (
             <div>
-                Register
+                LoginResetPassword
             </div>
         );
     },
 );
 
-export default Register;
+export default LoginResetPassword;
