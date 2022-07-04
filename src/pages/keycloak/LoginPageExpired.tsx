@@ -71,7 +71,7 @@ export const LoginPageExpired = memo(
         const form = useRef<HTMLFormElement>(null);
         const { url, message, realm, } = kcContext;
         const isSessionOut = message?.summary.includes('attempt timed out') || message?.summary.includes('Timeout');
-        console.log(kcContext);
+        console.log('LoginPageExpired', kcContext);
         console.warn('message =>', message);
 
 

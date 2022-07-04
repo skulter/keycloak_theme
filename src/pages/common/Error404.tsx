@@ -1,4 +1,3 @@
-import React from 'react';
 import Errors from '@/pages/common/Errors';
 import { useTranslation } from 'react-i18next';
 

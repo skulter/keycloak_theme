@@ -16,6 +16,7 @@ import LoginVerifyEmail from './pages/keycloak/LoginVerifyEmail';
 import Terms from './pages/keycloak/Terms';
 import LoginConfigTotp from './pages/keycloak/LoginConfigTotp';
 import LoginIdpLinkConfirm from './pages/keycloak/LoginIdpLinkConfirm';
+import Error from './pages/keycloak/Error';
 
 export const KeycloakApp = memo(({ kcContext }: { kcContext: KcContextType; }) => {
   console.log(kcContext);
@@ -47,6 +48,10 @@ export const KeycloakApp = memo(({ kcContext }: { kcContext: KcContextType; }) =
     //   return <LoginIdpLinkEmail {...{ kcContext, ...defaultKcProps }} />;
     case "login-page-expired.ftl":
       return <LoginPageExpired {...{ kcContext, ...defaultKcProps }} />;
+    // case "login-config-totp.ftl":
+    //   return <LoginConfigTotp {...{ kcContext, ...defaultKcProps }} />;
+    case "error.ftl":
+      return <Error {...{ kcContext, ...defaultKcProps }} />;
     // case "login-config-totp.ftl":
     //   return <LoginConfigTotp {...{ kcContext, ...defaultKcProps }} />;
     default:
