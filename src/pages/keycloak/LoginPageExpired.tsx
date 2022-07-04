@@ -35,57 +35,50 @@ const LoginFormContainer = styled(Grid)`
     padding: 1rem 2rem !important;
 `
 
-const LoginForm = styled.form`
-  margin: 2rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const LoginInput = styled(TextField)`
-  width: 20rem;
-  /* padding:2rem !important; */
-  margin-bottom: 1rem !important;
-`;
-
 const LoginButton = styled(Button)`
   background-color: rgb(28, 47, 68)  !important;
   height:2.5rem;
   width: 100%;
+  margin-bottom: 1rem !important;
 `;
-
-const Footer = styled.footer`
-  position: absolute;
-  bottom: 1rem;
-  display: flex;
-  flex-direction: column !important;
-  align-items: center !important;
-`
-
-const year = new Date();
 
 
 export const LoginPageExpired = memo(
-    ({ kcContext, ...props }: { kcContext: KcContext_LoginPageExpired } & KcProps) => {
-        const form = useRef<HTMLFormElement>(null);
-        const { url, message, realm, } = kcContext;
-        const isSessionOut = message?.summary.includes('attempt timed out') || message?.summary.includes('Timeout');
-        console.log('LoginPageExpired', kcContext);
-        console.warn('message =>', message);
+  ({ kcContext, ...props }: { kcContext: KcContext_LoginPageExpired } & KcProps) => {
+    const form = useRef<HTMLFormElement>(null);
+    const { url, message, realm, }: { url: any } & any = kcContext;
+    const isSessionOut = message?.summary.includes('attempt timed out') || message?.summary.includes('Timeout');
+    console.log('LoginPageExpired', kcContext);
+    console.warn('message =>', message);
 
 
-        const handleSubmit = () => {
-            console.log(form);
-            form?.current?.submit();
-        };
+    const handleSubmit = () => {
+      console.log(form);
+      form?.current?.submit();
+    };
 
-        return (
-            <div>
-                LoginPageExpired
-            </div>
-        );
-    },
+    return (
+      <StyledLogin container>
+        <LoginFormContainer item>
+          {message?.type === 'error' &&
+            <Box sx={{ width: '100%', color: '#ef2771', border: '1px solid #a0a0a0d8', padding: '.5rem', textAlign: 'center' }}>
+              {message?.summary}
+            </Box>}
+
+          <Grid display='flex' sx={{
+            marginTop: '1rem',
+            justifyContent: 'center'
+          }} >
+            <Typography sx={{ marginBottom: '2rem' }} variant='h5' >페이지가 만료되었습니다.</Typography>
+          </Grid>
+          <Grid item sx={{ alignItems: 'center', flexDirection: 'column' }}>
+            <LoginButton variant="contained" href={url.loginRestartFlowUrl}>로그인 다시하기</LoginButton>
+            <LoginButton variant="contained" href={url.registrationAction}>로그인 계속하기</LoginButton>
+          </Grid>
+        </LoginFormContainer>
+      </StyledLogin >
+    );
+  },
 );
 
 export default LoginPageExpired;

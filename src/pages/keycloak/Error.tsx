@@ -76,45 +76,17 @@ export const Error = memo(
     return (
       <StyledError container>
         <ErrorFormContainer item>
-          {message?.type === 'error' &&
-            <Box sx={{ width: '100%', color: '#ef2771', border: '1px solid #a0a0a0d8', padding: '.5rem', textAlign: 'center' }}>
-              {message?.summary}
-            </Box>}
-
           <Grid display='flex' sx={{
-            marginTop: '3rem',
-            justifyContent: 'center'
+            marginTop: '1rem',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center'
           }} >
-            <Typography variant='h5' >Error</Typography>
-          </Grid>
-
-          <Grid item sx={{ alignItems: 'center', flexDirection: 'column' }}>
-            <Grid item>
-              <FormControl sx={{ marginBottom: 2, width: "100%" }} variant="outlined">
-                <InputLabel >
-                  Email ID
-                </InputLabel>
-                <OutlinedInput
-                  id="username"
-                  name="username"
-                  size="medium"
-                  label='Email ID'
-                />
-              </FormControl>
-              <FormControl sx={{ marginBottom: 2, width: "100%" }} variant="outlined">
-                <InputLabel>
-                  Password
-                </InputLabel>
-                <OutlinedInput
-                  id="password"
-                  name="password"
-                  type="password"
-                  size="medium"
-                  label='Password'
-                />
-              </FormControl>
-            </Grid>
-            <ErrorButton variant="contained" onClick={() => handleSubmit()}>Error</ErrorButton>
+            <Typography sx={{ marginBottom: '2rem' }} variant='h5' >Error</Typography>
+            {message?.type === 'error' &&
+              <Box sx={{ width: '100%', color: '#ef2771', border: '1px solid #a0a0a0d8', padding: '.5rem', textAlign: 'center' }}>
+                {message?.summary}
+              </Box>}
           </Grid>
         </ErrorFormContainer>
       </StyledError >
