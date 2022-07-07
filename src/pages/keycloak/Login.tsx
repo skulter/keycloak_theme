@@ -1,6 +1,6 @@
-import React, { useRef, memo, useEffect } from 'react';
+import { useRef, memo } from 'react';
 import styled from 'styled-components';
-import { Box, Button, FormControl, Grid, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField, Typography } from '@mui/material';
+import { Box, Button, FormControl, Grid, InputLabel, OutlinedInput, Typography } from '@mui/material';
 import type { KcProps } from 'keycloakify/lib/components/KcProps';
 import type { KcContextType } from '@/utils/keycloakManager';
 
@@ -8,38 +8,10 @@ import facebook from '@/assets/images/facebook.png';
 import google from '@/assets/images/google.png';
 import github from '@/assets/images/github.png';
 import microsoft from '@/assets/images/microsoft.png';
-import bg2 from '@/assets/images/bg_2.jpg'
-import bg3 from '@/assets/images/bg_3.jpg'
-import bg4 from '@/assets/images/bg_4.jpg'
-import bg5 from '@/assets/images/bg_5.jpg'
-
+import RightArea from '@/layouts/RightArea';
+import Layout from '@/layouts/Layout';
 
 type KcContext_Login = Extract<KcContextType, { pageId: 'login.ftl' }>;
-
-const StyledLogin = styled(Grid)`
-  min-width: 100vw;
-  min-height: 100vh;
-  background-image: url(${bg4});
-  /* background-color: rgb(222, 230, 240); */
-  display: flex;
-  flex-direction: column !important;
-  align-items: center;
-  justify-content: center !important;
-`;
-
-const LoginFormContainer = styled(Grid)`
-    box-shadow: 1px 1px 2px 1.5px gray;
-    /* border-radius: 5px; */
-    /* border : 2px solid grey; */
-    background-color: white;
-    justify-content: center;
-    width: 23rem;
-    /* height:35rem; */
-    display: flex;
-    flex-direction: column !important;
-    align-items: center;
-    padding: 1rem 2rem !important;
-`
 
 const LoginForm = styled.form`
   margin: 2rem 0;
@@ -54,14 +26,6 @@ const LoginButton = styled(Button)`
   height:2.5rem;
   width: 100%;
 `;
-
-const Footer = styled.footer`
-  position: absolute;
-  bottom: 1rem;
-  display: flex;
-  flex-direction: column !important;
-  align-items: center !important;
-`
 
 const returnImg = (data: string): string => {
   switch (data) {
@@ -145,8 +109,8 @@ export const Login = memo(
     // }, []);
 
     return (
-      <StyledLogin container>
-        <LoginFormContainer item>
+      <Layout enabledFooter={true} >
+        <Grid item md={9}>
           {message?.type === 'error' &&
             <Box sx={{ width: '100%', color: '#ef2771', border: '1px solid #a0a0a0d8', padding: '.5rem', textAlign: 'center' }}>
               {message?.summary}
@@ -156,7 +120,7 @@ export const Login = memo(
             marginTop: '3rem',
             justifyContent: 'center'
           }} >
-             <Typography variant='h5' >User Login</Typography>
+            <Typography variant='h5' >User Login</Typography>
           </Grid>
           <LoginForm ref={form} method="post" action={url.loginAction}>
 
@@ -188,12 +152,13 @@ export const Login = memo(
               </Grid>
               <LoginButton variant="contained" onClick={() => handleSubmit()}>Login</LoginButton>
             </Grid>
+
             <Grid container direction='column' alignItems='center' marginTop='2rem'>
               <Grid item marginBottom='2rem'>
                 <Typography>or</Typography>
               </Grid>
               <Grid container alignContent='center' justifyContent='space-between'>
-                {social.displayInfo && social.providers?.map(provider => (
+                {test.displayInfo && test.providers?.map(provider => (
                   <a id={`social-${provider.displayName}`} type="button" href={provider.loginUrl} key={provider.displayName}>
                     <img width={40} src={returnImg(provider.providerId)} alt={provider.providerId}></img>
                   </a>
@@ -201,13 +166,21 @@ export const Login = memo(
               </Grid>
             </Grid>
           </LoginForm>
-        </LoginFormContainer>
-        <Footer >
-          <Grid item><Typography>{year.getFullYear()} CLOUDMATE Corp. All Rights Reserved.</Typography></Grid>
-          <Grid item><a href='https://who.cloudmt.co.kr/privacypolicy' target='_blank' rel='noreferrer'><Typography>Privacy Policy</Typography></a></Grid>
-          <Grid item><Typography>Cookie Policy</Typography></Grid>
-        </Footer>
-      </StyledLogin >
+        </Grid>
+        <Grid item md={1}
+          sx={{
+            display: { xs: 'none', md: 'flex' },
+            borderLeft: '1px solid rgb(200, 200, 200)',
+            height: '450px',
+            position: 'absolute',
+            left: '50%'
+          }} />
+        <Grid item md={9} sx={{
+          display: { xs: 'none', md: 'flex' },
+        }}>
+          <RightArea />
+        </Grid>
+      </Layout>
     );
   },
 );
