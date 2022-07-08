@@ -3,10 +3,6 @@ import styled from 'styled-components';
 import { Box, Button, FormControl, Grid, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField, Typography } from '@mui/material';
 import type { KcProps } from 'keycloakify/lib/components/KcProps';
 import type { KcContextType } from '@/utils/keycloakManager';
-import bg2 from '@/assets/images/bg_2.jpg'
-import bg3 from '@/assets/images/bg_3.jpg'
-import bg4 from '@/assets/images/bg_4.jpg'
-import bg5 from '@/assets/images/bg_5.jpg'
 
 type KcContext_LoginOtp = Extract<KcContextType, { pageId: 'login-otp.ftl' }>;
 

@@ -1,19 +1,26 @@
 import { Grid } from '@mui/material';
-import first from 'src/assets/images/1.svg'
-import second from 'src/assets/images/2.svg'
-import third from 'src/assets/images/3.svg'
-
-
+import First from '@/assets/images/one.svg'
+import Second from '@/assets/images/two.svg'
+import Third from '@/assets/images/three.svg'
 
 const randomImg = () => {
-
-    return null
+    const random = Math.floor(Math.random() * 3)
+    console.log(random)
+    switch (random) {
+        case 0: return First;
+        case 1: return Second;
+        case 2: return Third;
+        default: return First;
+    }
 }
 
 const RightArea = () => {
     return (
-        <Grid>
-            <img src={first} alt="text" />
+        <Grid item md={9} sx={{
+            display: { xs: 'none', md: 'flex' },
+            justifyContent: 'center'
+        }}>
+            <img src={randomImg()} alt="" />
         </Grid>
     );
 };

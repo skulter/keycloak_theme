@@ -24,12 +24,18 @@ export const { kcContext } = getKcContext<{
 }>({
   // @cindy.choi
   // 아래의 디버깅을 원하는 페이지 주석을 해제하면 하단의 mockData를 적용하여 로컬에 페이지를 띄울 수 있습니다.
-  "mockPageId": "login.ftl",
+  // "mockPageId": "login.ftl",
+  // "mockPageId": "info.ftl",
+  // "mockPageId": "error.ftl",
+  // "mockPageId": "login-idp-link-confirm.ftl",
+  // "mockPageId": "login-page-expired.ftl",
+  // "mockPageId": "login-update-password.ftl",
+  // "mockPageId": "login-update-profile.ftl",
   // "mockPageId": "register.ftl",
   // "mockPageId": "login-update-profile.ftl",
   // @ts-ignore
   // "mockPageId": "login-update-password.ftl",
-  // "mockPageId": "info.ftl",
+
   // "mockPageId": "error.ftl",
 
   /**
