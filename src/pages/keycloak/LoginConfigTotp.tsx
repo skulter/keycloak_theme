@@ -10,7 +10,7 @@ export const LoginConfigTotp = memo(
     ({ kcContext, ...props }: { kcContext: KcContext_LoginConfigTotp } & KcProps) => {
         const { url, message, realm, } = kcContext;
         const isSessionOut = message?.summary.includes('attempt timed out') || message?.summary.includes('Timeout');
-        console.log(kcContext);
+        console.log("LoginConfigTotp", kcContext);
         console.warn('message =>', message);
         return (
             <div>

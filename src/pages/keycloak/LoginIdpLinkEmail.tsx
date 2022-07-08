@@ -11,15 +11,10 @@ export const LoginIdpLinkEmail = memo(
     ({ kcContext, ...props }: { kcContext: KcContext_LoginIdpLinkEmail } & KcProps) => {
         const form = useRef<HTMLFormElement>(null);
         const { url, message, realm, } = kcContext;
-        const isSessionOut = message?.summary.includes('attempt timed out') || message?.summary.includes('Timeout');
-        console.log(kcContext);
+        console.log("LoginIdpLinkEmail", kcContext);
         console.warn('message =>', message);
 
 
-        const handleSubmit = () => {
-            console.log(form);
-            form?.current?.submit();
-        };
 
         return (
             <div>
