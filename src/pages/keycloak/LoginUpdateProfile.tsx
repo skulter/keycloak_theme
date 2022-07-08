@@ -20,13 +20,10 @@ const LoginButton = styled(Button)`
   width: 100%;
 `;
 
-
-
 export const LoginUpdateProfile = memo(
   ({ kcContext, ...props }: { kcContext: KcContext_LoginUpdateProfile } & KcProps) => {
     const form = useRef<HTMLFormElement>(null);
     const { url, message, realm, user } = kcContext;
-    const isSessionOut = message?.summary.includes('attempt timed out') || message?.summary.includes('Timeout');
 
     const handleSubmit = () => {
       console.log(form);
