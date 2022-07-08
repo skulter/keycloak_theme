@@ -15,6 +15,7 @@ export const LoginConfigTotp = memo(
         return (
             <div>
                 LoginConfigTotp
+                (테스트중 해당 파일이 보이면 문의 해주세요.)
             </div>
         );
     },

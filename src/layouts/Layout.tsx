@@ -17,7 +17,7 @@ const Layout = ({ children, enabledFooter }: LayoutProps) => {
   min-height: 100vh;
   background-image: url(${bg3}) ;
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
   /* background: linear-gradient(180deg, rgba(243,244,255,1) 0%, rgba(97,101,165,1) 100%); */
   display: flex;
   flex-direction: column !important;

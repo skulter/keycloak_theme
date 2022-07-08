@@ -5,12 +5,11 @@ import Third from '@/assets/images/three.svg'
 
 const randomImg = () => {
     const random = Math.floor(Math.random() * 3)
-    console.log(random)
     switch (random) {
-        case 0: return First;
-        case 1: return Second;
-        case 2: return Third;
-        default: return First;
+        case 0: return <a target="_blank" href="https://recruit.cloudmt.co.kr"  > <img src={First} alt="" /></a>;
+        case 1: return <a target="_blank" href="mailto:contact@cloudmt.co.kr" > <img src={Second} alt="" /></a>;
+        case 2: return <a target="_blank" href="https://recruit.cloudmt.co.kr" > <img src={Third} alt="" /></a>;
+        default: return <a target="_blank" href="https://recruit.cloudmt.co.kr" > <img src={First} alt="" /></a>;
     }
 }
 
@@ -20,7 +19,7 @@ const RightArea = () => {
             display: { xs: 'none', md: 'flex' },
             justifyContent: 'center'
         }}>
-            <img src={randomImg()} alt="" />
+            {randomImg()}
         </Grid>
     );
 };
